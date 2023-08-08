@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WebController {
 
     @GetMapping("/")
-    public String hello(){
+    public String main(){
         return "main";
+    }
+
+    @GetMapping("/items/save")
+    public String save(){
+        return "items-save";
     }
 }
