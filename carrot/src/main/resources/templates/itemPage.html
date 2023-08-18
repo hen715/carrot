@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;
+                                            charset=UTF-8" />
+  <title>당근 마켓</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-md-12">
+  <a href="/">당근마켓</a>
+  <h3 th:text="${item.title}"></h3><br>
+  <h2 th:text="${item.description}"></h2><br>
+  <a th:text="${item.owner}"></a><br>
+  <a th:text="${item.place}"></a><br>
+  <a th:text="${item.price}"></a><br>
+  <a th:text="${item.image}"></a><br>
+  <script th:inline="javascript">
+    var itemid = [[${item.id}]];
+  </script>
+  <button type="button" class="btn btn-primary" th:onclick="|window.location.href='/item/update/' + ${item.id}|">수정</button>
+  <button type="button" class="btn btn-danger" id ="btn-delete">삭제</button>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script src="/index.js"></script>
+
+</body>
+</html>
