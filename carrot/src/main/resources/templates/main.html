@@ -10,7 +10,7 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
-            <a href="/items/save" role="button" class="btn btn-primary">글 등록</a>
+            <a href="/item/save" role="button" class="btn btn-primary">상품 등록</a>
             {{#userName}}
             Logged in as: <span id="user">{{userName}}</span>
             <a href="/logout" class="btn btn-info active" role="button">Logout</a>
@@ -34,7 +34,7 @@
         <tbody>
         <tr th:each="item : ${items}">
             <td>
-                <a th:href="@{/itemShow(id=${id})}" th:text="${item.title}"></a>
+                <a th:href="@{/itemShow/{id}(id=${item.id})}" th:text="${item.title}"></a>
             </td>
             <td th:text="${item.place}"></td>
             <td th:text="${item.modifiedDate}"></td>
