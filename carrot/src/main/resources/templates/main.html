@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html;
                                             charset=UTF-8" />
@@ -25,27 +25,28 @@
     <table class="table table-horizontal table-bordered">
         <thead class="thead-strong">
         <tr>
-            <th>게시글번호</th>
             <th>제목</th>
-            <th>작성자</th>
+            <th>위치</th>
             <th>최종수정일</th>
+            <th>가격</th>
         </tr>
         </thead>
-        <tbody id="tbody">
-        {{#posts}}
-        <tr>
-            <td>{{id}}</td>
-            <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-            <td>{{author}}</td>
-            <td>{{modifiedDate}}</td>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td>
+                <a th:href="@{/itemShow(id=${id})}" th:text="${item.title}"></a>
+            </td>
+            <td th:text="${item.place}"></td>
+            <td th:text="${item.modifiedDate}"></td>
+            <td th:text="${item.price}"></td>
         </tr>
-        {{/posts}}
         </tbody>
     </table>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<script src="/js/app/index.js"></script>
+<script src="/index.js"></script>
+
 </body>
 </html>
