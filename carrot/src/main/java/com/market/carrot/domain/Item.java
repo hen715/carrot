@@ -40,4 +40,12 @@ public class Item extends BaseTimeEntity {
         this.price = price;
         this.image = image;
     }
+
+    public void update(String title, String description, String place, Long price, String image){
+        this.title = title;
+        this.description = description;
+        this.place = place;
+        this.price = price;
+        this.image = image;
+    }
 }
