@@ -37,14 +37,17 @@ var main={
     update : function (){
         var data = {
             title: $('#title').val(),
-            content: $('#content').val()
+            description: $('#description').val(),
+            place: $('#place').val(),
+            price: $('#price').val(),
+            image: $('#image').val()
         };
 
         var id = $('#id').val();
 
         $.ajax({
             type: 'PUT',
-            url: '/api/v1/posts/'+id,
+            url: '/api/v1/items/'+id,
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -57,11 +60,11 @@ var main={
     },
 
     delete : function (){
-        var id = $('#id').val();
+        var id = itemid;
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/posts/'+id,
+            url: '/api/v1/items/'+id,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function () {
