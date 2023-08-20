@@ -35,4 +35,8 @@ public class WebController {
         model.addAttribute("item",itemsService.findById(id));
         return "itemPage";
     }
+    @GetMapping("/join/user")
+    public String joinUser(){
+        return "join";
+    }
 }

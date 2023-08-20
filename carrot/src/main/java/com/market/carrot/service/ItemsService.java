@@ -2,10 +2,8 @@ package com.market.carrot.service;
 
 import com.market.carrot.domain.Item;
 import com.market.carrot.domain.ItemRepository;
-import com.market.carrot.dto.ItemDto;
-import com.market.carrot.dto.ItemListDto;
-import com.market.carrot.dto.ItemSaveDto;
-import com.market.carrot.dto.ItemUpdateDto;
+import com.market.carrot.domain.user.UserRepository;
+import com.market.carrot.dto.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,5 +46,7 @@ public class ItemsService {
         Item item = itemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 상품이 없습니다."));
         itemRepository.delete(item);
     }
+
+
 }
 

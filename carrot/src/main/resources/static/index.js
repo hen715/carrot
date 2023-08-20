@@ -10,6 +10,9 @@ var main={
         $('#btn-delete').on('click',function (){
             _this.delete();
         });
+        $('#btn-join').on('click',function (){
+            _this.join();
+        });
     },
     save : function (){
         var data = {
@@ -28,6 +31,27 @@ var main={
             data: JSON.stringify(data)
         }).done(function () {
             alert('글이 등록되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error){
+            alert(JSON.stringify(error));
+        });
+    },
+
+    join : function (){
+        var data = {
+            name: $('#name').val(),
+            email: $('#email').val(),
+            password: $('#password').val(),
+            picture: $('#picture').val()
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/join',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function () {
+            alert('회원이 등록되었습니다.');
             window.location.href = '/';
         }).fail(function (error){
             alert(JSON.stringify(error));
