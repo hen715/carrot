@@ -3,13 +3,13 @@ package com.market.carrot.domain.user;
 import com.market.carrot.domain.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
-import lombok.Cleanup;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
 @Entity
+@Table(name = "userTable")
 public class User extends BaseTimeEntity {
 
     @Id
