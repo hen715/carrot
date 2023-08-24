@@ -5,7 +5,9 @@ import com.market.carrot.dto.ItemUpdateDto;
 import com.market.carrot.dto.UserSaveDto;
 import com.market.carrot.service.ItemsService;
 import com.market.carrot.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,7 +34,10 @@ public class ApiController {
     }
 
     @PostMapping("/api/v1/join")
-    public Long userSave(@RequestBody UserSaveDto userSaveDto){
+    public Long userSave(@Valid @RequestBody UserSaveDto userSaveDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            throw new IllegalStateException("유효성 오류가 있습니다.");
+        }
         return userService.join(userSaveDto);
     }
 
