@@ -12,7 +12,7 @@
         <div class="col-md-6">
             <span sec:authorize="isAuthenticated()">
                 Logged in as: <span id="user" sec:authentication="name"></span>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                <a href="/user/logout" class="btn btn-info active" role="button">Logout</a>
                 <a href="/item/save" role="button" class="btn btn-primary">상품 등록</a>
             </span>
             <span sec:authorize="!isAuthenticated()">
