@@ -5,7 +5,9 @@ import com.market.carrot.domain.user.UserRepository;
 import com.market.carrot.dto.UserDto;
 import com.market.carrot.dto.UserSaveDto;
 import jakarta.transaction.Transactional;
+import jdk.jfr.TransitionTo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -13,9 +15,14 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public Long join(UserSaveDto userSaveDto){
+        userRepository.findByEmail(userSaveDto.getEmail()).ifPresent(existingUser -> {
+            throw new IllegalStateException("이미 존재하는 사용자입니다.");
+        });
+        userSaveDto.setPassword(passwordEncoder.encode(userSaveDto.getPassword()));
         return userRepository.save(userRepository.save(userSaveDto.toEntity())).getId();
     }
 
@@ -33,4 +40,5 @@ public class UserService {
         User user = userRepository.findByEmail(email).orElseThrow(()->new IllegalArgumentException("존재하지 않는 이메일입니다."));
         return new UserDto(user);
     }
+
 }
