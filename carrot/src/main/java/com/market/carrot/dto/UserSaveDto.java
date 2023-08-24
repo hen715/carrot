@@ -25,16 +25,16 @@ public class UserSaveDto {
     @NotEmpty(message = "사용자의 비밀번호는 필수입니다.")
     private String password;
     private String picture;
-    private Role role;
+    /*private Role role;*/
 
     @Builder
-    public UserSaveDto(String name, String email, String password, String picture,Role role){
+    public UserSaveDto(String name, String email, String password, String picture/*,Role role*/){
 
         this.name = name;
         this.email = email;
         this.password = password;
         this.picture = picture;
-        this.role = role;
+        /*this.role = role;*/
     }
 
     public User toEntity(){
@@ -43,7 +43,7 @@ public class UserSaveDto {
               .email(email)
               .password(password)
               .picture(picture)
-              .role(role)
+              /*.role(role)*/
               .build();
     }
 }

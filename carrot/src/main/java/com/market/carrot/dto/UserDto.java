@@ -11,7 +11,7 @@ public class UserDto {
     private String email;
     private String password;
     private String picture;
-    private Role role;
+    /*private Role role;*/
 
     public UserDto(User user){
         this.id = user.getId();
@@ -19,7 +19,7 @@ public class UserDto {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.picture = user.getPicture();
-        this.role=this.getRole();
+        /*this.role=this.getRole();*/
 
     }
 
