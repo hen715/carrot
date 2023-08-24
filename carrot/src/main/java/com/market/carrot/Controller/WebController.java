@@ -47,13 +47,13 @@ public class WebController {
         return "join";
     }
 
-    @PostMapping("/login")
+/*    @PostMapping("/user/login")
     public String login(@RequestParam("email") String email, @RequestParam("password") String password){
         UserDto user = userService.login(email,password);
         if(user == null){
             return "main";
         }
         return "main";
-    }
+    }*/
 
 }
