@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>당근 마켓</title>
@@ -9,29 +10,30 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
-            <span th:if="${loginUser!=null}">
-                Logged in as: <span id="user" th:text="${loginUser.name}"></span>
+            <span sec:authorize="isAuthenticated()">
+                Logged in as: <span id="user" sec:authentication="name"></span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
                 <a href="/item/save" role="button" class="btn btn-primary">상품 등록</a>
             </span>
-            <span th:unless="${loginUser!=null}">
+            <span sec:authorize="!isAuthenticated()">
                 <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
                 <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-                            <div class="container">
-                <form th:action="@{/user/login}" method="post">
-                    <div class="form-group">
-                        <input type="text" id="username" name="username" placeholder="이메일을 입력하세요">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
-                    </div>
-                    <button type="submit" class="btn btn-primary">로그인</button>
-                </form>
-                                <a href="/join/user" role="button" class="btn btn-secondary">회원가입</a>
-            </div>
+                <div class="container">
+                    <form th:action="@{/user/login}" method="post">
+                        <div class="form-group">
+                            <input type="text" id="username" name="username" placeholder="이메일을 입력하세요">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+                        </div>
+                        <button type="submit" class="btn btn-primary">로그인</button>
+                    </form>
+                    <a href="/join/user" role="button" class="btn btn-secondary">회원가입</a>
+                </div>
             </span>
         </div>
     </div>
+</div>
     <br>
     <table class="table table-horizontal table-bordered">
         <thead class="thead-strong">
