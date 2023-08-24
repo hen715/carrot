@@ -48,13 +48,11 @@ public class WebController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request){
+    public String login(@RequestParam("email") String email, @RequestParam("password") String password){
         UserDto user = userService.login(email,password);
         if(user == null){
             return "main";
         }
-        HttpSession session = request.getSession();
-        session.setAttribute("loginUser",user);
         return "main";
     }
 
