@@ -1,5 +1,6 @@
 package com.market.carrot.config;
 
+import com.market.carrot.domain.user.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,8 +21,10 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
-                .authorizeHttpRequests((authorizeHttpRequests)-> authorizeHttpRequests.
+                .authorizeRequests((authorizeRequests)-> authorizeRequests.
                         requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
+                .authorizeRequests((authorizeRequests)-> authorizeRequests.
+                        requestMatchers(new AntPathRequestMatcher("/api/v1/**")).hasRole(Role.USER.name()).anyRequest().authenticated())
                 .csrf((csrf)-> csrf.
                         disable())
                 .headers((headers)->headers
