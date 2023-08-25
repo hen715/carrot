@@ -1,5 +1,6 @@
 package com.market.carrot.domain;
 
+import com.market.carrot.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,8 +21,8 @@ public class Item extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT" , nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private String owner;
+    @ManyToOne
+    private User owner;
 
     @Column(nullable = false)
     private String place;
@@ -32,7 +33,7 @@ public class Item extends BaseTimeEntity {
     private String image;
 
     @Builder
-    public Item(String title, String description, String owner, String place, Long price, String image){
+    public Item(String title, String description, User owner, String place, Long price, String image){
         this.title =title;
         this.description = description;
         this.owner =owner;
