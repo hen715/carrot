@@ -1,6 +1,7 @@
 package com.market.carrot.dto;
 
 import com.market.carrot.domain.Item;
+import com.market.carrot.domain.user.User;
 import lombok.Getter;
 
 @Getter
@@ -9,7 +10,7 @@ public class ItemDto {
     private Long id;
     private String title;
     private String description;
-    private String owner;
+    private User owner;
     private String place;
     private Long price;
     private String image;
