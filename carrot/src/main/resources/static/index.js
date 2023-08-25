@@ -17,7 +17,6 @@ var main={
     save : function (){
         var data = {
             title: $('#title').val(),
-            owner: $('#owner').val(),
             description: $('#description').val(),
             place: $('#place').val(),
             price: $('#price').val(),
