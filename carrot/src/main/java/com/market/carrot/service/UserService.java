@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -26,19 +28,29 @@ public class UserService {
         return userRepository.save(userRepository.save(userSaveDto.toEntity())).getId();
     }
 
-    @Transactional
+/*    @Transactional
     public UserDto login(String email, String password){
         UserDto user = findByEmail(email);
         if(user.getPassword().equals(password))
             return user;
         else return null;
 
-    }
+    }*/
 
     @Transactional
     public UserDto findByEmail(String email){
         User user = userRepository.findByEmail(email).orElseThrow(()->new IllegalArgumentException("존재하지 않는 이메일입니다."));
         return new UserDto(user);
+    }
+
+    @Transactional
+    public User getUser(String email){
+        Optional<User> user = userRepository.findByEmail(email);
+        if(user.isPresent()){
+            return user.get();
+        }else {
+            throw new IllegalStateException("사용자가 없습니다.");
+        }
     }
 
 }
