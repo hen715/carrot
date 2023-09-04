@@ -22,7 +22,21 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests((authorizeRequests)-> authorizeRequests.
-                        requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
+                        requestMatchers(new AntPathRequestMatcher("/")).permitAll())
+                .authorizeRequests((authorizeRequests)-> authorizeRequests.
+                        requestMatchers(new AntPathRequestMatcher("/join/**")).permitAll())
+                .authorizeRequests((authorizeRequests)-> authorizeRequests.
+                        requestMatchers(new AntPathRequestMatcher("/api/v2/join")).permitAll())
+                .authorizeRequests((authorizeRequests)-> authorizeRequests.
+                        requestMatchers(new AntPathRequestMatcher("/itemShow/**")).permitAll())
+                .authorizeRequests((authorizeRequests)-> authorizeRequests.
+                        requestMatchers(new AntPathRequestMatcher("/index.js")).permitAll())
+                .authorizeRequests((authorizeRequests)-> authorizeRequests.
+                        requestMatchers(new AntPathRequestMatcher("/js/**")).permitAll())
+                .authorizeRequests((authorizeRequests)-> authorizeRequests.
+                        requestMatchers(new AntPathRequestMatcher("/css/**")).permitAll())
+                .authorizeRequests((authorizeRequests)-> authorizeRequests.
+                        requestMatchers(new AntPathRequestMatcher("/image/**")).permitAll())
                 .authorizeRequests((authorizeRequests)-> authorizeRequests.
                         requestMatchers(new AntPathRequestMatcher("/api/v1/**")).hasRole(Role.USER.name()).anyRequest().authenticated())
                 .csrf((csrf)-> csrf.
@@ -40,6 +54,8 @@ public class SecurityConfig {
                 ;
         return http.build();
     }
+
+
 
     @Bean
     PasswordEncoder passwordEncoder(){
