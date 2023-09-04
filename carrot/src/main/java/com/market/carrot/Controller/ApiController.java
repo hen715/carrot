@@ -57,7 +57,7 @@ public class ApiController {
 
     }
 
-    @PostMapping("/api/v1/join")
+    @PostMapping("/api/v2/join")
     public Long userSave(@Valid @RequestBody UserSaveDto userSaveDto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             throw new IllegalStateException("유효성 오류가 있습니다.");

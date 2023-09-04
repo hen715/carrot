@@ -45,7 +45,7 @@ var main={
         };
         $.ajax({
             type: 'POST',
-            url: '/api/v1/join',
+            url: '/api/v2/join',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
