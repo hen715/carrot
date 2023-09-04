@@ -47,6 +47,11 @@ public class WebController {
         return "join";
     }
 
+    @GetMapping("/loginFail")
+    public String loginFail(){
+        return "loginFail";
+    }
+
 /*    @PostMapping("/user/login")
     public String login(@RequestParam("email") String email, @RequestParam("password") String password){
         UserDto user = userService.login(email,password);
